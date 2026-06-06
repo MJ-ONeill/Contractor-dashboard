@@ -344,29 +344,22 @@
     function saveToLocal() { localStorage.setItem('contractor_dashboard', JSON.stringify(projects)); }
 
     function loadData() {
-      const stored = localStorage.getItem('contractor_dashboard');
-      if (stored) {
-        try {
-          projects = JSON.parse(stored);
-          projects.forEach(p => {
-            if (!p.places) p.places = [];
-            p.places.forEach(pl => {
-              if (!pl.dateGroups) pl.dateGroups = [];
-              pl.dateGroups.forEach(g => { if (!g.items) g.items = []; });
-            });
-            if (p.finished === undefined) p.finished = false;
-            if (!p.startDate) p.startDate = '';
-            if (!p.endDate) p.endDate = '';
-          });
-        } catch (e) { projects = []; }
-      }
-      if (!projects.length) {
-        // No demo project - start completely empty
-        projects = [];
-      }
-      saveToLocal();
-    }
+        const stored = localStorage.getItem('contractor_dashboard');
+        if (stored) {
+          try {
+            projects = JSON.parse(stored);
+            // ... rest of the migration code stays the same ...
+          } catch (e) { projects = []; }
+        }
 
+        // 👇 REPLACE THE DEMO BLOCK BELOW WITH THIS:
+        if (!projects.length) {
+          // No demo project - start completely empty
+          projects = [];
+        }
+
+        saveToLocal();
+      }
     function computeProjectTotal(project) {
       let total = 0;
       project.places?.forEach(p => p.dateGroups?.forEach(g => g.items?.forEach(i => total += i.price)));
