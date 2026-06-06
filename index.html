@@ -361,18 +361,8 @@
         } catch (e) { projects = []; }
       }
       if (!projects.length) {
-        const demoId = uid();
-        projects = [{
-          id: demoId,
-          name: "🌿 Greenfield Remodel",
-          finished: false,
-          startDate: "2025-04-01",
-          endDate: "2025-04-20",
-          places: [
-            { id: uid(), name: "Builders Warehouse", dateGroups: [{ id: uid(), date: "2025-04-10", items: [{ id: uid(), description: "Cement", price: 450 }, { id: uid(), description: "Bricks", price: 1200 }] }] },
-            { id: uid(), name: "Chamberlains", dateGroups: [{ id: uid(), date: "2025-04-15", items: [{ id: uid(), description: "Paint", price: 890 }] }] }
-          ]
-        }];
+        // No demo project - start completely empty
+        projects = [];
       }
       saveToLocal();
     }
